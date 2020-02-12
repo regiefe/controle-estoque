@@ -1,2 +1,2 @@
 <?php 
-	$con = mysqli_connect("localhost", "root", "123456", "loja");
+$con = new PDO('sqlite:../modelo/database/loja.db');

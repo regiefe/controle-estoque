@@ -8,18 +8,18 @@
 	  
 	$dados = $_POST;
 	if (array_key_exists('usado', $_POST)){
-		$usado = "true";
+		$usado = 0;
 	}else{
-		$usado = "false";
+		$usado = 1;
 	}
-	$produto = new Produto($dados['id'], $dados['nome'], $dados['preco'], $dados['descricao'], $dados['categoria_id'], $usado);
+	$produto = new Produto($dados['id'], $dados['produto'], $dados['preco'], $dados['descricao'], $dados['categoria_id'], $usado);
 
 	
 	if(alteraProduto($con, $produto)){?>
-		<p class="text-success">Produto <?=$produto->nome ?> que custa <?=$produto->preco?> reais, foi alterado</p>
+		<p class="text-success">Produto <?=$produto->produto ?> que custa <?=$produto->preco?> reais, foi alterado</p>
  	<?php }else{
- 		$msg = mysqli_error($con)
+ 		$msg = 'Erro ao atualizar produto'
  		?>
-		<p class="text-danger">Erro:<?=$msg ?>, ao alterar produto <?=$produto->nome?></p>
+		<p class="text-danger">Erro:<?=$msg ?>, ao alterar produto <?=$produto->produto?></p>
 	<?php }?>
 <?php require_once "../vista/rodape.php" ?>

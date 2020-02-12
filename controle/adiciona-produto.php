@@ -9,18 +9,19 @@
 
 	$dados = $_POST;
 	if (array_key_exists('usado', $dados)){
-		$usado = "true";
+		$usado = 0;
 	}else{
-		$usado = "false";
+		$usado = 1;
 	}
-	$produto = new Produto($dados['id'], $dados['nome'], $dados['preco'], $dados['descricao'], $dados['categoria_id'], $usado);
+	$produto = new Produto($dados['id'], $dados['produto'], $dados['preco'], $dados['descricao'], $dados['categoria_id'], $usado);
 	
 	if(insereProduto($con, $produto)){?>
-		<p class="text-success">Adicionado produto <?=$produto->nome ?> que custa <?=$produto->preco?> reais. </p>
+		<p class="text-success">Adicionado produto <?=$produto->produto ?> que custa <?=$produto->preco?> reais. </p>
 		
- 	<?php header("Location: ../vista/produto-lista.php"); }else{
- 		$msg = mysqli_error($con)
+        <?php header("Location: ../vista/produto-lista.php"); }
+    else{
+ 		$msg = 'Deu alguma coisa errado';
  		?>
-		<p class="text-danger">Erro ao adicionar produto <?=$produto->nome?>: <?=$msg ?> </p>
+		<p class="text-danger">Erro ao adicionar produto <?=$produto->produto?>: <?=$msg ?> </p>
 	<?php }?>
 <?php require_once "../vista/rodape.php" ?>

@@ -1,6 +1,6 @@
 <tr>
   <td>Produto</td>
-  <td><input class="form-control" type="text" name="nome" value="<?=$produto->nome?>"></td>
+  <td><input class="form-control" type="text" name="produto" value="<?=$produto->produto?>"></td>
 </tr>
 <tr>
   <td>Preco</td>

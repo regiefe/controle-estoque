@@ -21,7 +21,7 @@
 	 foreach ($produtos as $produto) : ?>
 	 	<tbody>
 		 	<tr>
-		 		<td><?=$produto['nome']?></td>
+		 		<td><?=$produto['produto']?></td>
 		 		<td><?='R$ '.number_format($produto['preco'], 2, '.', ',')?></td>
 		 		<td><?=substr($produto['descricao'],0 , 40)?></td>
 		 		<td><?=$produto['categoria_nome']?></td>

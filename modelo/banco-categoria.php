@@ -1,12 +1,11 @@
 <?php
 	require_once "con.php";
-	function  listaCategorias($con)
-	{
+	function  listaCategorias($con) {
 		$categorias = [];
-		$query = "SELECT * FROM categoria";
-		$res = mysqli_query($con, $query);
-		while($categoria = mysqli_fetch_assoc($res))
-		{
+		$sql = "SELECT * FROM categoria";
+		$resultado = $con->query($sql);
+
+		while($categoria = $resultado->fetch()) {
 			array_push($categorias, $categoria);
 		}
 		return $categorias;

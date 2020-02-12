@@ -1,35 +1,32 @@
 <?php
 require_once "con.php";
 
-function buscaUsuario($con, $email, $senha)
-{
+function buscaUsuario($con, $email, $senha) {
   $senhaMd5 = md5($senha);
-  $email = mysqli_real_escape_string($con, $email);
-  $query = "SELECT * FROM usuario WHERE email='{$email}' AND senha='{$senhaMd5}'";
-  $res = mysqli_query($con, $query);
-  return mysqli_fetch_assoc($res);
+
+  $sql = "SELECT * FROM usuario WHERE email='{$email}' AND senha='{$senhaMd5}'";
+  $resultado = $con->query($sql);
+  return $resultado->fetch();
 }
-function listaUsuarios($con)
-{
+
+function listaUsuarios($con) {
   $usuarios = [];
-  $query =  "SELECT * FROM usuario";
-  $res = mysqli_query($con, $query);
+  $sql =  "SELECT * FROM usuario";
+  $resultado = $con->query($sql);
   
-  while($usuario = mysqli_fetch_assoc($res))
-  {
+  while($usuario = $resultado->fetch()) {
     array_push($usuarios, $usuario);
   }
   return $usuarios;
 }
 
-function cadastraUsuario($con, $usuario)
-{
+function cadastraUsuario($con, $usuario) {
   $senhaMd5 = md5($usuario->senha);
-  $query = "INSERT INTO usuario(email, senha) VALUES('{$usuario->email}', '{$senhaMd5}')";
-  return mysqli_query($con, $query);
+  $sql = "INSERT INTO usuario(email, senha) VALUES('{$usuario->email}', '{$senhaMd5}')";
+  return $con->exec($sql);
 }
-function removeUsuario($con, $id)
-{
-  $query = "DELETE FROM usuario WHERE id='$id'";
-  return  mysqli_query($con, $query);
+
+function removeUsuario($con, $id) {
+  $sql = "DELETE FROM usuario WHERE id='$id'";
+  return $con->exec($sql);
 }
