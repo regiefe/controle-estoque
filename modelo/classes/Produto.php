@@ -1,13 +1,16 @@
 <?php
 class Produto {
-    public $id, $produto, $preco, $descricao, $categoria_id, $usado;
-             
-    function    __construct( $id = '', $produto, $preco, $descricao,  $categoria_id, $usado) {
-        $this->id = $id;
-        $this->produto = $produto;
-        $this->preco = $preco;
-        $this->descricao = $descricao;
-        $this->categoria_id = $categoria_id;
-        $this->usado = $usado;
+    private $data = array();
+    
+    public function __get($prop){
+        return $this->data[$prop];
+    }
+
+    public function __set($prop, $value){
+        $this->data[$prop] = $value;
+    }
+
+    public function getData(){
+        return $this->data;
     }
 }

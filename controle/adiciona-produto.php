@@ -7,17 +7,20 @@
 
 	verificaUsuario();
 
-	$dados = $_POST;
-	if (array_key_exists('usado', $dados)){
-		$usado = 0;
-	}else{
-		$usado = 1;
-	}
-	$produto = new Produto($dados['id'], $dados['produto'], $dados['preco'], $dados['descricao'], $dados['categoria_id'], $usado);
+	$_POST;
 	
+	isset($_POST['usado']) ? $_POST['usado'] = 0 : $_POST['usado'] = 1;
+
+	$produto = new Produto();
+	
+	foreach($_POST as $prop => $value){
+		$produto->$prop = $value;
+	}
+	
+
 	if(insereProduto($con, $produto)){?>
 		<p class="text-success">Adicionado produto <?=$produto->produto ?> que custa <?=$produto->preco?> reais. </p>
-		
+
         <?php header("Location: ../vista/produto-lista.php"); }
     else{
  		$msg = 'Deu alguma coisa errado';
