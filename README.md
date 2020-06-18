@@ -1,4 +1,4 @@
-##Controle de estoque em PHP
+## Controle de estoque em PHP
 
 Um sistema simple em PHP7.3 para estudo da linguagem. 
 
