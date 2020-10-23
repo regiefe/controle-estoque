@@ -1,6 +1,7 @@
 <?php
 	require_once "cabecalho.php";
 	require_once "../modelo/banco-produtos.php";
+	require_once "../modelo/con.php";
 ?>
 
 <table class="table table-striped table-bordered">
@@ -15,10 +16,10 @@
 		</tr>
 	</thead>
 	<?php
-	 $produtos = listaProdutos($con);
-	
 
-	 foreach ($produtos as $produto) : ?>
+	$produtos = new BancoProduto($con);
+
+	 foreach ($produtos->listaProdutos() as $produto) : ?>
 	 	<tbody>
 		 	<tr>
 		 		<td><?=$produto['produto']?></td>

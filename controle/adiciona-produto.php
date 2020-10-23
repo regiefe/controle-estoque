@@ -6,25 +6,22 @@
 	require_once "../modelo/classes/Produto.php";
 
 	verificaUsuario();
-
 	$_POST;
-	
+
 	isset($_POST['usado']) ? $_POST['usado'] = 0 : $_POST['usado'] = 1;
 
-	$produto = new Produto();
+	$produto = new BancoProduto($con);
 	
-	foreach($_POST as $prop => $value){
-		$produto->$prop = $value;
-	}
-	
+	if($produto->insereProduto($_POST)):
+		$_SESSION['success'] = "Produto {$dados['produto']} foi alterado";
+		header("Location: ../vista/produto-lista.php");
+	else: 
+ 		$msg = 'Erro ao atualizar produto';
+		$_SESSION['text-danger'] = "Erro: {$msg}, ao alterar produto {$dados['produto']}";
+		header("Location: ../vista/produto-lista.php");
+	endif; 
+	require_once "../vista/rodape.php"; 
 
-	if(insereProduto($con, $produto)){?>
-		<p class="text-success">Adicionado produto <?=$produto->produto ?> que custa <?=$produto->preco?> reais. </p>
 
-        <?php header("Location: ../vista/produto-lista.php"); }
-    else{
- 		$msg = 'Deu alguma coisa errado';
- 		?>
-		<p class="text-danger">Erro ao adicionar produto <?=$produto->produto?>: <?=$msg ?> </p>
-	<?php }?>
-<?php require_once "../vista/rodape.php" ?>
+
+	 

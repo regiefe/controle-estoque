@@ -4,13 +4,12 @@ require_once "../controle/logica-usuario.php";
 ?>
 
 <h1>Loja virtual</h1>
-<?php if(usuarioEstaLogado()) {?>
+<?php if(usuarioEstaLogado()): ?>
 <p class="text-success">Você esta logado como <?=usuarioLogado()?></p>
-
 <a class="btn btn-info" href="usuario-formulario.php">Cadastrar outro usuario</a>
 <a class="btn btn-warning" href="../controle/logout.php">Sair</a>
 
-<?php }else{ ?>
+<?php else: ?>
 <h2>Login</h2>
 <form  action="../controle/login.php" method="post" autocomplete="off">
     <table class="table">
@@ -28,5 +27,5 @@ require_once "../controle/logica-usuario.php";
       </tr>
     </table>
 </form>
-<?php }
+<?php endif;
 require_once "rodape.php"?>

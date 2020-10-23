@@ -1,14 +1,14 @@
 <tr>
   <td>Produto</td>
-  <td><input class="form-control" type="text" name="produto" value="<?=$produto->produto?>"></td>
+  <td><input class="form-control" type="text" name="produto" value="<?=$produto['produto']?>"></td>
 </tr>
 <tr>
   <td>Preco</td>
-  <td><input class="form-control" type="number" name="preco" value="<?=$produto->preco?>"></td>
+  <td><input class="form-control" type="number" name="preco" value="<?=$produto['preco']?>"></td>
 </tr>
 <tr>
   <td>Descrição</td>
-  <td><textarea class="form-control" name="descricao"><?=$produto->descricao?></textarea></td>
+  <td><textarea class="form-control" name="descricao"><?=$produto['descricao']?></textarea></td>
 </tr>
 <tr>
   <td></td>
