@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-docker rm -f $(docker ps -aq)
-docker image rm -f controle
+docker rm -f $(docker ps -aq) 2> /dev/null
+docker image rm -f controle 2> /dev/null
 docker build -t controle .
 docker run -d -p80:8042 --name controle-estoque controle
 docker ps 
