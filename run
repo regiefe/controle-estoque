@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-docker rm -f $(docker ps -aq) 2> /dev/null
-docker image rm -f controle 2> /dev/null
-docker build -t controle .
-docker run -d -p80:8042 --name controle-estoque controle
-docker ps 
+podman rm -f $(podman ps -aq) 2> /dev/null
+podman image rm -f controle 2> /dev/null
+podman build -t controle .
+podman run -d -p80:8042 --name controle-estoque controle
+podman ps 
