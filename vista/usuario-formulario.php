@@ -30,5 +30,4 @@
             </tr>   
         </table>
     </form> 
-<?php require_once 'usuario-lista.php';?>
-<?php require_once 'cabecalho.php';?>
+    <?php require_once 'usuario-lista.php';?>

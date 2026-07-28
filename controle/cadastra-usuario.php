@@ -12,12 +12,17 @@ if($valida)
 {
     $usuario = criaUsuario($_POST['email'], $_POST['senha'], $_POST['confirma']);
     
-    if(cadastraUsuario($con, $usuario)){
-        $_SESSION['success'] = "Usuario cadastrado com sucesso!";
+    try {
+        if(cadastraUsuario($con, $usuario)){
+            $_SESSION['success'] = "Usuario cadastrado com sucesso!";
+            header("Location: ../vista/usuario-formulario.php");
+        } else {
+            $_SESSION['danger'] = "Erro ao cadastrar usuario";
+            header("Location: ../vista/usuario-formulario.php");
+        }
+    } catch (PDOException $e) {
+        $_SESSION['danger'] = "Erro ao cadastrar usuario: " . $e->getMessage();
         header("Location: ../vista/usuario-formulario.php");
-    }else{
-        $erro = mysqli_error($con);
-        echo "Erro ao cadastrar usuario $erro";
     }     
 }
 function criaUsuario($email, $senha, $confirma)
