@@ -1,10 +1,17 @@
-FROM alpine:latest
-WORKDIR /controle-estoque
-COPY . .
-RUN apk update && apk upgrade && \
-apk add  sqlite php84-session  \
-php84-pdo php84-pdo_sqlite php84-sqlite3 && \
-rm -f /var/cache/apk/* && \
-echo  "Atualizado  banco  de dados" && \
-sqlite3 -column  modelo/database/loja.db -cmd '.read  modelo/database/loja.sql'  ["php8", "-S", "172.17.0.2:8042"]
-EXPOSE 8043
+FROM php:8.0-cli
+
+# Instala extensões necessárias
+RUN apt-get update && apt-get install -y unzip zip git sqlite3
+
+# Cria diretório da aplicação
+WORKDIR /app
+
+# Copia arquivos para dentro do container
+COPY . /app
+
+# Rodando o banco de dados
+RUN sqlite3 modelo/database/loja.db < modelo/database/loja.sql
+
+# Comando padrão do container
+CMD ["php", "-S", "0.0.0.0:8042", "-t", "."]
+
