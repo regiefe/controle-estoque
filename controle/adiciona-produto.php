@@ -1,27 +1,23 @@
 <?php
-	require_once "../vista/cabecalho.php";
 	require_once "../modelo/banco-produtos.php";
 	require_once "../modelo/con.php";
 	require_once "logica-usuario.php";
+	require_once "csrf.php";
 	require_once "../modelo/classes/Produto.php";
 
 	verificaUsuario();
-	$_POST;
+	validarCSRF($_POST['csrf_token'] ?? '');
 
-	isset($_POST['usado']) ? $_POST['usado'] = 0 : $_POST['usado'] = 1;
+	$_POST['usado'] = isset($_POST['usado']) ? 1 : 0;
 
 	$produto = new BancoProduto($con);
-	
-	if($produto->insereProduto($_POST)):
-		$_SESSION['success'] = "Produto {$dados['produto']} foi alterado";
+
+	if($produto->insereProduto($_POST)){
+		$_SESSION['success'] = "Produto " . htmlspecialchars($_POST['produto']) . " foi adicionado";
 		header("Location: ../vista/produto-lista.php");
-	else: 
- 		$msg = 'Erro ao atualizar produto';
-		$_SESSION['text-danger'] = "Erro: {$msg}, ao alterar produto {$dados['produto']}";
+		die();
+	} else {
+		$_SESSION['text-danger'] = "Erro ao adicionar produto";
 		header("Location: ../vista/produto-lista.php");
-	endif; 
-	require_once "../vista/rodape.php"; 
-
-
-
-	 
+		die();
+	}

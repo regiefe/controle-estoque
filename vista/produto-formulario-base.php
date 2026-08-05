@@ -1,34 +1,34 @@
 <tr>
   <td>Produto</td>
-  <td><input class="form-control" type="text" name="produto" value="<?=$produto['produto']?>"></td>
+  <td><input class="form-control" type="text" name="produto" value="<?=htmlspecialchars($produto['produto'] ?? '')?>"></td>
 </tr>
 <tr>
   <td>Preco</td>
-  <td><input class="form-control" type="number" name="preco" value="<?=$produto['preco']?>"></td>
+  <td><input class="form-control" type="number" name="preco" value="<?=htmlspecialchars($produto['preco'] ?? '')?>"></td>
 </tr>
 <tr>
   <td>Descrição</td>
-  <td><textarea class="form-control" name="descricao"><?=$produto['descricao']?></textarea></td>
+  <td><textarea class="form-control" name="descricao"><?=htmlspecialchars($produto['descricao'] ?? '')?></textarea></td>
 </tr>
 <tr>
   <td></td>
-  <td><input type="checkbox" name="usado" <?=$usado?> value="true">Usado</td>
+  <td><input type="checkbox" name="usado" <?=$usado ?? ''?> value="true">Usado</td>
 </tr>
 <tr>
   <td>Categorias</td>
   <td>
     <select name="categoria_id" class="form-control">
       <?php foreach ($categorias as $categoria):
-            $essaEhCategoria = $produto->categoria_id == $categoria['id'];
-            $selecao = $essaEhCategoria ? "selected='selected'":"";
+            $essaEhCategoria = ($produto['categoria_id'] ?? null) == $categoria['id'];
+            $selecao = $essaEhCategoria ? "selected='selected'" : "";
         ?>
         <option value="<?=$categoria['id']?>" <?=$selecao?>>
-          <?=$categoria['nome']?>
+          <?=htmlspecialchars($categoria['nome'])?>
         </option>
       <?php endforeach ?>
     </select>
   </td>
 </tr>
 <tr>
-  <td><button class="btn btn-primary">Alterar</button></td>
+  <td><button class="btn btn-primary"><?=htmlspecialchars($botaoTexto ?? 'Salvar')?></button></td>
 </tr>

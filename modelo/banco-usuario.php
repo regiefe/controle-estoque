@@ -1,32 +1,35 @@
 <?php
 require_once "con.php";
 
-function buscaUsuario($con, $email, $senha) {
-  $senhaMd5 = md5($senha);
-
-  $sql = "SELECT * FROM usuario WHERE email='{$email}' AND senha='{$senhaMd5}'";
-  $resultado = $con->query($sql);
-  return $resultado->fetch();
+function buscaUsuario($con, $email)
+{
+    $sql = "SELECT * FROM usuario WHERE email = :email";
+    $stmt = $con->prepare($sql);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+    return $stmt->fetch();
 }
 
-function listaUsuarios($con) {
-  $usuarios = [];
-  $sql =  "SELECT * FROM usuario";
-  $resultado = $con->query($sql);
-  
-  while($usuario = $resultado->fetch()) {
-    array_push($usuarios, $usuario);
-  }
-  return $usuarios;
+function listaUsuarios($con)
+{
+    $sql = "SELECT * FROM usuario";
+    return $con->query($sql)->fetchAll();
 }
 
-function cadastraUsuario($con, $usuario) {
-  $senhaMd5 = md5($usuario->senha);
-  $sql = "INSERT INTO usuario(email, senha) VALUES('{$usuario->email}', '{$senhaMd5}')";
-  return $con->exec($sql);
+function cadastraUsuario($con, $usuario)
+{
+    $senhaHash = password_hash($usuario->senha, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO usuario(email, senha) VALUES(:email, :senha)";
+    $stmt = $con->prepare($sql);
+    $stmt->bindValue(':email', $usuario->email, PDO::PARAM_STR);
+    $stmt->bindValue(':senha', $senhaHash, PDO::PARAM_STR);
+    return $stmt->execute();
 }
 
-function removeUsuario($con, $id) {
-  $sql = "DELETE FROM usuario WHERE id='$id'";
-  return $con->exec($sql);
+function removeUsuario($con, $id)
+{
+    $sql = "DELETE FROM usuario WHERE id = :id";
+    $stmt = $con->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    return $stmt->execute();
 }
