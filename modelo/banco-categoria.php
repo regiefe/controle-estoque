@@ -1,12 +1,8 @@
 <?php
-	require_once "con.php";
-	function  listaCategorias($con) {
-		$categorias = [];
-		$sql = "SELECT * FROM categoria";
-		$resultado = $con->query($sql);
+require_once "con.php";
 
-		while($categoria = $resultado->fetch()) {
-			array_push($categorias, $categoria);
-		}
-		return $categorias;
-	}
+function listaCategorias($con)
+{
+    $sql = "SELECT * FROM categoria";
+    return $con->query($sql)->fetchAll();
+}
