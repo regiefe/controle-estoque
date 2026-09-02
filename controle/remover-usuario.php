@@ -14,7 +14,8 @@ if (!$id) {
     die();
 }
 
-removeUsuario($con, $id);
+$bancoUsuario = new BancoUsuario($con);
+$bancoUsuario->removeUsuario($id);
 $_SESSION['success'] = "Usuário removido com sucesso!";
 header("Location: ../vista/usuario-formulario.php");
 die();

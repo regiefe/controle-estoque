@@ -3,7 +3,8 @@
     require_once 'cabecalho.php';
     require_once '../modelo/banco-usuario.php';
     require_once '../modelo/con.php';
-    $lsUsuario = listaUsuarios($con);
+    $bancoUsuario = new BancoUsuario($con);
+    $lsUsuario = $bancoUsuario->listaUsuarios();
 ?>
 
 <!DOCTYPE html>

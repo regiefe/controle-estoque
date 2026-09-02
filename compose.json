@@ -9,11 +9,11 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "Tests\\": "teste/"
     }
   },
   "scripts": {
-    "test": "phpunit tests"
+    "test": "phpunit teste"
   }
 }
 

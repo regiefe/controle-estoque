@@ -15,7 +15,8 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     die();
 }
 
-$usuario = buscaUsuario($con, $email);
+$bancoUsuario = new BancoUsuario($con);
+$usuario = $bancoUsuario->buscaUsuario($email);
 if ($usuario && password_verify($senha, $usuario['senha'])) {
     logaUsuario($usuario['email']);
     $_SESSION['success'] = "Logado com sucesso!";

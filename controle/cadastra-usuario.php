@@ -31,7 +31,8 @@ if ($valida) {
     $usuario = new Usuario($email, $senha, $confirma);
 
     try {
-        if (cadastraUsuario($con, $usuario)) {
+        $bancoUsuario = new BancoUsuario($con);
+        if ($bancoUsuario->cadastraUsuario($usuario)) {
             $_SESSION['success'] = "Usuário cadastrado com sucesso!";
             header("Location: ../vista/usuario-formulario.php");
         } else {

@@ -1,8 +1,18 @@
 <?php
 require_once "con.php";
 
-function listaCategorias($con)
+class BancoCategoria
 {
-    $sql = "SELECT * FROM categoria";
-    return $con->query($sql)->fetchAll();
+    private $con;
+
+    function __construct($con)
+    {
+        $this->con = $con;
+    }
+
+    public function listaCategorias()
+    {
+        $sql = "SELECT * FROM categoria";
+        return $this->con->query($sql)->fetchAll();
+    }
 }
