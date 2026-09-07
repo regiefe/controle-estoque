@@ -6,7 +6,7 @@
 	require_once "csrf.php";
 
 	verificaUsuario();
-	validarCSRF($_POST['csrf_token'] ?? '');
+	validarCSRFOrDie();
 
 	$dados = $_POST;
 	$dados['usado'] = array_key_exists('usado', $dados) ? 1 : 0;

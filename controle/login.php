@@ -4,7 +4,7 @@ require_once "../modelo/con.php";
 require_once "logica-usuario.php";
 require_once "../controle/csrf.php";
 
-validarCSRF($_POST['csrf_token'] ?? '');
+validarCSRFOrDie();
 
 $email = $_POST['email'] ?? '';
 $senha = $_POST['senha'] ?? '';

@@ -10,7 +10,7 @@ session_start();
 $valida = $_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['email']);
 
 if ($valida) {
-    validarCSRF($_POST['csrf_token'] ?? '');
+    validarCSRFOrDie();
 
     $email = $_POST['email'];
     $senha = $_POST['senha'] ?? '';

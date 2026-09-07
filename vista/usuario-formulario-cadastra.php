@@ -39,7 +39,7 @@
 <table class="table">
   <tr>
     <td>Email</td>
-    <td><?=$usuario['email']?></td>  
+    <td><?=htmlspecialchars($usuario['email'], ENT_QUOTES, 'UTF-8')?></td>  
   </tr> 
 </table>
 <?php endforeach;?>  
