@@ -19,13 +19,13 @@
 			<th>Remover</th>
 		</tr>
 	</thead>
-	<tbody>
 	<?php
 
 	$produtos = new BancoProduto($con);
 
 	foreach ($produtos->listaProdutos() as $produto): ?>
-		<tr>
+		<tbody>
+			<tr>
 				<td><?=htmlspecialchars($produto['produto'])?></td>
 				<td><?= 'R$ ' . number_format($produto['preco'], 2, '.', ',') ?></td>
 				<td><?=htmlspecialchars(substr($produto['descricao'], 0, 40))?></td>
@@ -41,15 +41,13 @@
 					</form>
 				</td>
 			</tr>
+		</tbody>
 	<?php endforeach ?>
-	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="6">
-				<a class="btn btn-primary" href="produto-formulario.php">Cadastrar</a>
-			</td>
-		</tr>
-	</tfoot>
+	<tr>
+		<td colspan="6">
+			<a class="btn btn-primary" href="produto-formulario.php">Cadastrar</a>
+		</td>
+	</tr>
 </table>
 
 <?php require_once "rodape.php"; ?>

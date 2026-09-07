@@ -5,7 +5,7 @@ require_once 'logica-usuario.php';
 require_once 'csrf.php';
 
 verificaUsuario();
-validarCSRFOrDie();
+validarCSRF($_POST['csrf_token'] ?? '');
 
 $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
 if (!$id) {
@@ -14,8 +14,7 @@ if (!$id) {
     die();
 }
 
-$bancoUsuario = new BancoUsuario($con);
-$bancoUsuario->removeUsuario($id);
+removeUsuario($con, $id);
 $_SESSION['success'] = "Usuário removido com sucesso!";
 header("Location: ../vista/usuario-formulario.php");
 die();

@@ -7,8 +7,7 @@ require_once "../controle/csrf.php";
 
 verificaUsuario();
 
-$bancoCategoria = new BancoCategoria($con);
-$categorias = $bancoCategoria->listaCategorias();
+$categorias = listaCategorias($con);
 $produto = [];
 $usado = '';
 $botaoTexto = 'Adicionar';

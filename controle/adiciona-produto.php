@@ -6,7 +6,7 @@
 	require_once "../modelo/classes/Produto.php";
 
 	verificaUsuario();
-	validarCSRFOrDie();
+	validarCSRF($_POST['csrf_token'] ?? '');
 
 	$_POST['usado'] = isset($_POST['usado']) ? 1 : 0;
 

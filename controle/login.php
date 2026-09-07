@@ -4,7 +4,7 @@ require_once "../modelo/con.php";
 require_once "logica-usuario.php";
 require_once "../controle/csrf.php";
 
-validarCSRFOrDie();
+validarCSRF($_POST['csrf_token'] ?? '');
 
 $email = $_POST['email'] ?? '';
 $senha = $_POST['senha'] ?? '';
@@ -15,8 +15,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     die();
 }
 
-$bancoUsuario = new BancoUsuario($con);
-$usuario = $bancoUsuario->buscaUsuario($email);
+$usuario = buscaUsuario($con, $email);
 if ($usuario && password_verify($senha, $usuario['senha'])) {
     logaUsuario($usuario['email']);
     $_SESSION['success'] = "Logado com sucesso!";

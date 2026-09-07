@@ -1,8 +1,5 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
+session_start();
 function logaUsuario($email)
 {
   $_SESSION['usuario_logado'] = $email;

@@ -6,8 +6,7 @@
     require_once 'cabecalho.php';
 
     verificaUsuario();
-    $bancoUsuario = new BancoUsuario($con);
-    $lsUsuario = $bancoUsuario->listaUsuarios();
+    $lsUsuario = listaUsuarios($con);
 ?>
     <div class="container">
         <h1>Cadastro de Usuário</h1>
