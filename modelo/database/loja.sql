@@ -13,13 +13,14 @@ CREATE TABLE produto(
 );
 CREATE TABLE usuario(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
     senha VARCHAR(255)
 );
 
 INSERT INTO categoria(nome) VALUES ('esporte'), ('escolar'), ('mobilidade');
 INSERT INTO produto  (produto, preco, descricao, categoria_id, usado) 
-            VALUES ('fusca', 5300, 'Um classico de alta qualidade', 3, 0),
+            VALUES ('Buzao', 5, 'Mobilidade de pobre', 3, 0),
                    ('lapis', 3, 'um lapis qualquer', 2, 0),
+                   ('caderno', 3, 'Nao adianta ter uma canete se não te caderno', 2, 0),
                    ('bola', 30, 'bola classica oficial', 1, 1);
-INSERT INTO usuario(email, senha) VALUES('regi@teste.com', '827ccb0eea8a706c4c34a16891f84e7b');
+INSERT INTO usuario(email, senha) VALUES('regi@teste.com', '$2b$12$KWn7r3KlsEoyZP/i8gXFTeL4NaMcpF6xVXuxNauHyDpD/tNqBJkWu');

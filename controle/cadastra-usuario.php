@@ -10,7 +10,7 @@ session_start();
 $valida = $_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['email']);
 
 if ($valida) {
-    validarCSRF($_POST['csrf_token'] ?? '');
+    validarCSRFOrDie();
 
     $email = $_POST['email'];
     $senha = $_POST['senha'] ?? '';
@@ -31,7 +31,8 @@ if ($valida) {
     $usuario = new Usuario($email, $senha, $confirma);
 
     try {
-        if (cadastraUsuario($con, $usuario)) {
+        $bancoUsuario = new BancoUsuario($con);
+        if ($bancoUsuario->cadastraUsuario($usuario)) {
             $_SESSION['success'] = "Usuário cadastrado com sucesso!";
             header("Location: ../vista/usuario-formulario.php");
         } else {

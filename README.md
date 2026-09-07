@@ -6,16 +6,9 @@ Um sistema simples em PHP para estudo da linguagem.
 ```
 	podman
 ```
-#### Instalação 
+####  Como executar
 ```
-
-podman build -t m-controle-estoque .
-
-# Rodando o projeto 
-podman run -d -p 80:8042 m-controle-estoque
-
-# Rodando o projeto em desenvolvimento
-podman run -it -p 80:8042 -v $(pwd):/controle-estoque  m-controle-estoque
+./run
 
 ```
 

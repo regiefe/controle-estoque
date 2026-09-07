@@ -24,7 +24,8 @@ if (!$produto) {
     die();
 }
 
-$categorias = listaCategorias($con);
+$bancoCategoria = new BancoCategoria($con);
+$categorias = $bancoCategoria->listaCategorias();
 $usado = $produto['usado'] ? "checked='checked'" : "";
 $botaoTexto = 'Alterar';
 

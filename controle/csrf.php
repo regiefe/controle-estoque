@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 function gerarCSRFToken()
 {
@@ -26,7 +28,7 @@ function validarCSRFOrDie()
 {
     if (!validarCSRF($_POST['csrf_token'] ?? '')) {
         $_SESSION['danger'] = "Token de segurança inválido. Tente novamente.";
-        header("Location: " . $_SERVER['HTTP_REFERER'] ?? '../vista/index.php');
+        header("Location: " . ($_SERVER['HTTP_REFERER'] ?? '../vista/index.php'));
         die();
     }
 }

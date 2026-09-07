@@ -5,7 +5,8 @@
 	require_once '../controle/csrf.php';
 
 	verificaUsuario();
-	$lsUsuario = listaUsuarios($con);
+	$bancoUsuario = new BancoUsuario($con);
+	$lsUsuario = $bancoUsuario->listaUsuarios();
 ?>
 <h2>Usuários cadastrados</h2>
 <?php foreach ($lsUsuario as $usuario): ?>

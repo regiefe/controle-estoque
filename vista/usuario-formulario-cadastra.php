@@ -3,7 +3,8 @@
     require_once 'cabecalho.php';
     require_once '../modelo/banco-usuario.php';
     require_once '../modelo/con.php';
-    $lsUsuario = listaUsuarios($con);
+    $bancoUsuario = new BancoUsuario($con);
+    $lsUsuario = $bancoUsuario->listaUsuarios();
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +39,7 @@
 <table class="table">
   <tr>
     <td>Email</td>
-    <td><?=$usuario['email']?></td>  
+    <td><?=htmlspecialchars($usuario['email'], ENT_QUOTES, 'UTF-8')?></td>  
   </tr> 
 </table>
 <?php endforeach;?>  
