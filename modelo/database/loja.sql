@@ -19,7 +19,8 @@ CREATE TABLE usuario(
 
 INSERT INTO categoria(nome) VALUES ('esporte'), ('escolar'), ('mobilidade');
 INSERT INTO produto  (produto, preco, descricao, categoria_id, usado) 
-            VALUES ('fusca', 5300, 'Um classico de alta qualidade', 3, 0),
+            VALUES ('Buzao', 5, 'Mobilidade de pobre', 3, 0),
                    ('lapis', 3, 'um lapis qualquer', 2, 0),
+                   ('caderno', 3, 'Nao adianta ter uma canete se não te caderno', 2, 0),
                    ('bola', 30, 'bola classica oficial', 1, 1);
 INSERT INTO usuario(email, senha) VALUES('regi@teste.com', '$2b$12$KWn7r3KlsEoyZP/i8gXFTeL4NaMcpF6xVXuxNauHyDpD/tNqBJkWu');
